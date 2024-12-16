@@ -5,7 +5,7 @@ import { Produto } from "../models/produto";
 class ProdutoRepository {
     produtoRepository = AppDataSource.getRepository(Produto);
 
-    // Método assíncrono para salvar (inserir) o produto no banco de dados
+    // Método assíncrono (porecisa aguardar) para salvar (inserir) o produto no banco de dados
     async save(produto: Produto): Promise<Produto> {
         try {
             this.produtoRepository.save(produto); //.save insere ou atualiza o registro, dependendo do objeto já possuir um id
@@ -70,7 +70,7 @@ class ProdutoRepository {
                 idProduto: produtoId,
             });
             if (produtoEncontrado) {
-                this.produtoRepository.remove(produtoEncontrado); // Removendo o produto se encontrado com .remove
+                this.produtoRepository.delete(produtoEncontrado); // Removendo o produto se encontrado com .delete
                 return 1; // Retorna 1 se for deletado com sucesso
             }
             return 0; // Retorna 0 se o produto não foi encontrado

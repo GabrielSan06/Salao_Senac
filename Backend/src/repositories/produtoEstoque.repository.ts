@@ -12,6 +12,7 @@ class ProdutoEstoqueRepository {
                 idProduto: produtoEstoque.idProduto,
             });
 
+            // TODO: Tirar as regras de negócio do repository e colocar no controller
             if (!produto) {
                 throw new Error("Produto não encontrado. O estoque não pode ser criado.");
             }
@@ -77,7 +78,7 @@ class ProdutoEstoqueRepository {
             });
 
             if (produtoEstoque) {
-                await this.produtoEstoqueRepository.remove(produtoEstoque);
+                await this.produtoEstoqueRepository.delete(produtoEstoque);
                 return 1;
             }
             return 0;
