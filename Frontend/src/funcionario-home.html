@@ -15,16 +15,16 @@
 
     <style>
         .card {
-            display: block;
+            display: none;
             position: absolute;
             top: 30%;
-            left: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             width: 650px;
-
         }
 
-        input{
-            width: 400px;
+        #fecharCardi{
+            display: none;
         }
     </style>
 </head>
@@ -76,7 +76,6 @@
 
     <main style="margin-top: 3.5rem; margin-left: 2rem;">
         <div class="row d-flex flex-column">
-            <!--Pesquisar os produtos com a barra-->
             <div class="col d-flex">
                 <div class="input-group flex-nowrap">
                     <span class="input-group-text" id="addon-wrapping">
@@ -88,7 +87,7 @@
                 <button type="button" class="btn btn-primary" id="mostrarCardBtn">Adicionar produto</button>
                 <button type="button" class="btn btn-primary">Editar quantidade de estoque</button>
             </div>
-            <!--Tabela de produtos-->
+
             <div class="col">
                 <table class="table table-striped">
                     <thead>
@@ -125,72 +124,98 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col"></div>
         </div>
 
-        <div class="adicionar">
+        <div class="adicionar" id="fecharCardi">
 
-            <div class="container-sm row">
-                <div id="card" class="card">
-                    <div class="col d-flex justify-content-between">
-                        <h3>Cadastro de produto</h3>
-                        <button id="fecharCardBtn">Fechar</button> <!-- Botão Fechar --></div>
-                    <div class="col d-flex">
-                        <span class="input-group-text"><img src="../assets/icones/xampu.png" alt=""></span>
-                        <input type="text" id="nomeProduto" placeholder="Digite o nome do produto" />
+            <div class="container-sm">
+                <div id="cardi" class="card pt-3 pb-4 row d-flex justify-content-center">
+                    <div class="col d-flex align-items-start">
+                        <h3 class="pb-4 m-auto">Cadastro de produto</h3>
+                        <!-- Botão para fechar -->
+                        <button id="fecharCardBtn" class="btn btn-secondary btn-sm btn-close"></button>
+                    </div>
+                    <div class="col pb-4 input-group">
+                        <div class="m-auto d-flex">
+                            <span class="input-group-text"><img src="../assets/icones/xampu.png" alt=""></span>
+                            <input type="text" id="nomeProduto" placeholder="Digite o nome do produto" style="width: 450px; border-color: #00000023; border-radius: 5px;" class="p-2"/>
+                        </div>
                     </div>
 
-                    <div class="col d-flex">
-                        <span class="input-group-text">$</span>
-                        <input type="number" id="precoProduto" placeholder="Digite o valor do produto" />
+                    <div class="col pb-4 input-group">
+                        <div class="m-auto d-flex">
+                            <span class="input-group-text"><img src="../assets/icones/money.svg" alt=""></span>
+                            <input type="number" id="precoProduto" placeholder="Digite o valor do produto" style="width: 450px; border-color: #00000023; border-radius: 5px;" class="p-2"/>
+                        </div>
                     </div>
 
-                    <div class="col d-flex">
-                        <span class="input-group-text"><img src="../assets/icones/journal-text.svg" alt=""></span>
-                        <input type="text" id="inputField" placeholder="Digite a descrição do produto" />
+                    <div class="col pb-3 input-group">
+                        <div class="m-auto d-flex">
+                            <span class="input-group-text"><img src="../assets/icones/journal-text.svg" alt=""></span>
+                            <textarea class="form-control" aria-label="With textarea" id="descricaoProduto" placeholder="Digite a descrição do produto" rows="3" style="width: 450px;" ></textarea>
+                        </div>
                     </div>
 
-                    <button id="submitBtn">Enviar</button>
+                    <div class="col d-flex justify-content-center">
+                        <button id="submitBtn" class="btn btn-primary btn-md" type="submit">Cadastrar</button>
+                    </div>
                 </div>
             </div>
 
-            <script src="script.js"></script>
         </div>
     </main>
-
-    <script>
-        // Referências aos elementos HTML
-        const mostrarCardBtn = document.getElementById('mostrarCardBtn');
-        const card = document.getElementById('card');
-        const submitBtn = document.getElementById('submitBtn');
-        const inputField = document.getElementById('inputField');
-
-        // Função para mostrar o card
-        mostrarCardBtn.addEventListener('click', function () {
-            card.style.display = 'block'; // Exibe o card
-        });
-
-        // Função para lidar com o envio de dados do input
-        submitBtn.addEventListener('click', function () {
-            const inputValue = inputField.value;
-
-            if (inputValue) {
-                alert(`Você digitou: ${inputValue}`);
-                inputField.value = ''; // Limpa o campo de input após o envio
-            } else {
-                alert('Por favor, digite algo!');
-            }
-        });
-
-        fecharCardBtn.addEventListener('click', function () {
-            card.style.display = 'none'; // Esconde o card
-        });
-
-    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+
+    <script>
+        // Referências aos elementos HTML
+        const mostrarCardBtn = document.getElementById('mostrarCardBtn');
+        const card = document.getElementById('cardi');
+        const submitBtn = document.getElementById('submitBtn');
+        const nomeProdutoEntrada = document.getElementById('nomeProduto');
+        const precoProdutoEntrada = document.getElementById('precoProduto');
+        const descricaoProdutoEntrada = document.getElementById('descricaoProduto');
+        const fecharCardBtn = document.getElementById('fecharCardBtn'); // Seleção do botão de fechar
+        const fecharCardi = document.getElementById('fecharCardi');
+        
+        // Função para mostrar o card
+        mostrarCardBtn.addEventListener('click', function () {
+            card.style.display = 'block'; // Exibe o card
+            fecharCardi.style.display = 'block';
+        });
+        
+        // Função para lidar com o envio de dados do input
+        submitBtn.addEventListener('click', function () {
+            let nomeProduto = nomeProdutoEntrada.value;
+            let precoProduto = precoProdutoEntrada.value;
+            let descricaoProduto = descricaoProdutoEntrada.value;
+        
+            if (descricaoProduto && nomeProduto && precoProduto) {
+                alert(`Você adicionou o produto ${nomeProduto} com preço de R$${precoProduto} com a descrição de ${descricaoProduto}.`);
+                
+                // Limpa os campos de entrada após o envio
+                nomeProdutoEntrada.value = '';
+                precoProdutoEntrada.value = '';
+                descricaoProdutoEntrada.value = '';
+                card.style.display = 'block'; 
+            } else {
+                alert('Por favor, digite algo!');
+                
+                // Limpa os campos de entrada caso falte algo
+                nomeProdutoEntrada.value = '';
+                precoProdutoEntrada.value = '';
+                descricaoProdutoEntrada.value = '';
+            }
+        });
+        
+        // Função para fechar o card
+        fecharCardBtn.addEventListener('click', function () {
+            fecharCardi.style.display = 'none'; // Esconde o card
+            alert('Clicou');
+        });
+    </script>
 </body>
 
 </html>
