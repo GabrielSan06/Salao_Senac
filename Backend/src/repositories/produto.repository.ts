@@ -3,9 +3,23 @@ import { ProdutoEstoque } from "../models/produtoEstoque";
 import { Produto } from "../models/produto";
 
 class ProdutoEstoqueRepository {
+    produtoRepository = AppDataSource.getRepository(Produto);
     produtoEstoqueRepository = AppDataSource.getRepository(ProdutoEstoque);
+<<<<<<< HEAD
     
     // Método assíncrono (porecisa aguardar) para salvar (inserir) o produto no banco de dados
+=======
+
+    async saveProduct(produto: Produto): Promise<Produto> {
+        try {
+            let novoProduto = await AppDataSource.getRepository(Produto).save(produto);
+            return novoProduto;
+        } catch (error) {
+            throw new Error("Falha crira novo produto!: " + error);
+        }
+    }
+
+>>>>>>> back-end
     async save(produtoEstoque: ProdutoEstoque): Promise<ProdutoEstoque> {
         try {
             const produto = await AppDataSource.getRepository(Produto).findOneBy({

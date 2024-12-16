@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
 import produtoRepository from '../repositories/produto.repository';
-import { ProdutoEstoque } from '../models/produtoEstoque';
+import { Produto } from '../models/produto';
 
 export class ProdutoController {
     async create(req: Request, res: Response) {
         try { 
-            const { idProduto, quantidade } = req.body;
-            const novoProduto = new ProdutoEstoque(idProduto, quantidade);
+            const { nome, custo, descricao } = req.body;            
+            const novoProduto = new Produto(nome, custo, descricao);
 
-            produtoRepository.save(novoProduto)
+            produtoRepository.saveProduct(novoProduto)
             res.status(201).json({ message: 'Produto criado com sucesso!' });
         } catch(error) {
             console.log("Algo deu errado: ", error)

@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import produtoRoutes from './routes/produto.route';
+import produtoRoutes from './routes';
 import "reflect-metadata"
 import { AppDataSource } from './db/data-source';
 
