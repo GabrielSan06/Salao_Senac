@@ -14,31 +14,64 @@
     <title>Site funcionário - estoque</title>
 
     <style>
+        .navbar{
+            background-color: #052B48 !important;
+        }
+
         .card {
             display: none;
             position: absolute;
-            top: 30%;
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 650px;
+            width: 500px;
+            background-color: whitesmoke;
+            border: 1px solid black;
         }
 
-        #fecharCardi{
+        #fecharCardi {
             display: none;
+        }
+
+        .btn-square {
+            height: 50px;
+            /* Ajuste conforme necessário */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .editar-tabela {
+            display: none;
+            border: 1px solid black;
+            width: 500px;
+            margin: auto;
+            border-radius: 20px;
+            position: relative;
+            top: 50%;
+            left: 25%;
+            transform: translate(-56%, -47%);
+            background-color: whitesmoke;
+        }
+
+        .editar-tabela .container {
+            width: 100px;
+            margin: auto;
         }
     </style>
 </head>
 
 <body>
     <header>
-        <nav class="navbar bg-body-tertiary fixed-top">
-            <div class="container-fluid ps-5 pe-5">
+        <nav class="navbar bg-body-tertiary fixed-top p-3" data-bs-theme="dark">
+            <div class="container-md ps-5 pe-5">
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon" ></span>
                 </button>
-                <a class="navbar-brand" href="#">Salão Escola Senac</a>
-                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+                <a class="navbar-brand" style="color: #E2C064" href="#">Salão Escola Senac</a>
+                <div class="offcanvas offcanvas-start" style="color: #E2C064; background-color: #052B48;" tabindex="-1" id="offcanvasNavbar"
                     aria-labelledby="offcanvasNavbarLabel">
                     <div class="offcanvas-header">
                         <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Salão Escola Senac</h5>
@@ -74,94 +107,173 @@
         </nav>
     </header>
 
-    <main style="margin-top: 3.5rem; margin-left: 2rem;">
-        <div class="row d-flex flex-column">
-            <div class="col d-flex">
-                <div class="input-group flex-nowrap">
-                    <span class="input-group-text" id="addon-wrapping">
-                        <img src="../assets/icones/search.svg" alt="">
-                    </span>
-                    <input type="text" class="form-control" placeholder="Ex: Tinta de cabelo rosa"
-                        aria-label="Ex: Tinta de cabelo rosa" aria-describedby="addon-wrapping">
+    <main style="margin-top: 3.5rem; margin-left: 2rem;" class="container-md m-auto pt-5">
+        <div class="container pt-5 pb-4">
+            <div class="row g-2 align-items-center">
+                <!-- Barra de navegação ocupando 8 colunas -->
+                <div class="col-12 col-md-8">
+                    <div class="input-group flex-nowrap input-group-lg">
+                        <span class="input-group-text" id="addon-wrapping">
+                            <img src="../assets/icones/search.svg" alt="">
+                        </span>
+                        <input type="text" class="form-control" placeholder="Ex: Tinta de cabelo rosa"
+                            aria-label="Ex: Tinta de cabelo rosa" aria-describedby="addon-wrapping">
+                    </div>
                 </div>
-                <button type="button" class="btn btn-primary" id="mostrarCardBtn">Adicionar produto</button>
-                <button type="button" class="btn btn-primary">Editar quantidade de estoque</button>
-            </div>
 
-            <div class="col">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">id</th>
-                            <th scope="col">Produto</th>
-                            <th scope="col">Preço</th>
-                            <th scope="col">Descrição</th>
-                            <th scope="col">Quantidade</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Tinta rosa</td>
-                            <td>R$20,00</td>
-                            <td>Tinta de cor rosa com muita masinha</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Tinta azul pantene</td>
-                            <td>R$15,00</td>
-                            <td>Tinta de cor azul para cabelos ondulados</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Tesoura de tosa</td>
-                            <td>R$30,00</td>
-                            <td>Tesoura especial para cortes inovadores</td>
-                            <td>8</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <!-- Botão 1 ocupando 2 colunas -->
+                <div class="col-6 col-md-2">
+                    <button type="button" class="btn btn-primary btn-sm btn-square w-100"
+                        id="mostrarCardBtn"><strong>Adicionar produto</strong></button>
+                </div>
+
+                <!-- Botão 2 ocupando 2 colunas -->
+                <div class="col-6 col-md-2">
+                    <button type="button" class="btn btn-primary btn-square btn-sm w-100" id="mostrarCardBtnEstoque"><strong>Editar
+                            estoque</strong></button>
+                </div>
             </div>
+        </div>
+
+        <section>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Produto</th>
+                        <th scope="col">Preço</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Quantidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Tinta rosa</td>
+                        <td>R$20,00</td>
+                        <td>Tinta de cor rosa com muita masinha</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Tinta azul pantene</td>
+                        <td>R$15,00</td>
+                        <td>Tinta de cor azul para cabelos ondulados</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Tesoura de tosa</td>
+                        <td>R$30,00</td>
+                        <td>Tesoura especial para cortes inovadores</td>
+                        <td>8</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         </div>
 
         <div class="adicionar" id="fecharCardi">
 
             <div class="container-sm">
-                <div id="cardi" class="card pt-3 pb-4 row d-flex justify-content-center">
-                    <div class="col d-flex align-items-start">
-                        <h3 class="pb-4 m-auto">Cadastro de produto</h3>
-                        <!-- Botão para fechar -->
-                        <button id="fecharCardBtn" class="btn btn-secondary btn-sm btn-close"></button>
+                <div id="cardi" class="card shadow p-4 mx-auto" style="max-width: 500px;">
+                  <!-- Título e botão fechar -->
+                  <div class="row mb-3">
+                    <div class="col">
+                      <h3 class="mb-0">Cadastro de Produto</h3>
                     </div>
-                    <div class="col pb-4 input-group">
-                        <div class="m-auto d-flex">
-                            <span class="input-group-text"><img src="../assets/icones/xampu.png" alt=""></span>
-                            <input type="text" id="nomeProduto" placeholder="Digite o nome do produto" style="width: 450px; border-color: #00000023; border-radius: 5px;" class="p-2"/>
+                    <div class="col-auto">
+                      <button id="fecharCardBtn" class="btn btn-secondary btn-sm btn-close"></button>
+                    </div>
+                  </div>
+              
+                  <!-- Input para Nome do Produto -->
+                  <div class="mb-3">
+                    <label for="nomeProduto" class="form-label">Nome do Produto:</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><img src="../assets/icones/xampu.png" alt="Ícone do Produto"></span>
+                      <input type="text" class="form-control" id="nomeProduto" placeholder="Digite o nome do produto" />
+                    </div>
+                  </div>
+              
+                  <!-- Input para Preço do Produto -->
+                  <div class="mb-3">
+                    <label for="precoProduto" class="form-label">Preço do Produto:</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><img src="../assets/icones/money.svg" alt="Ícone de Preço"></span>
+                      <input type="number" class="form-control" id="precoProduto" placeholder="Digite o valor do produto" />
+                    </div>
+                  </div>
+              
+                  <!-- Textarea para Descrição do Produto -->
+                  <div class="mb-3">
+                    <label for="descricaoProduto" class="form-label">Descrição do Produto:</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><img src="../assets/icones/journal-text.svg" alt="Ícone de Descrição"></span>
+                      <textarea class="form-control" id="descricaoProduto" placeholder="Digite a descrição do produto" rows="3"></textarea>
+                    </div>
+                  </div>
+              
+                  <!-- Botão de Cadastro -->
+                  <div class="text-center">
+                    <button id="submitBtn" class="btn btn-primary btn-md" type="submit">Cadastrar</button>
+                  </div>
+                </div>
+              </div>
+              
+
+        </div>
+
+        <div class="editar-tabela" id="editar-tabela-card">
+            <div class="container-sm p-4">
+                <div class="row d-flex flex-column">
+
+                    <div class="col d-flex justify-content-between">
+                        <h3>Editar estoque</h3>
+                        <button id="fecharCardBtnEstoque" class="btn btn-secondary btn-sm btn-close"></button>
+                    </div>
+
+                    <div class="col">
+                        <label for="exampleDataList" class="form-label">Nome do produto:</label>
+                        <div class="input-group mb-3">
+                            <input class="form-control" list="datalistOptions" id="exampleDataList"
+                                placeholder="Digite o nome do produto">
+                            <button class="btn btn-primary" type="button" id="button-addon2">Pesquisar</button>
+                        </div>
+                        <datalist id="datalistOptions">
+                            <option value="San Francisco">
+                            <option value="New York">
+                            <option value="Seattle">
+                            <option value="Los Angeles">
+                            <option value="Chicago">
+                        </datalist>
+                        <hr class="mt-4 mb-4">
+                    </div>
+                    <div class="col">
+                        <!-- Inputs com labels -->
+                        <div class="mb-3">
+                            <label for="productID" class="form-label">ID do Produto:</label>
+                            <input type="text" class="form-control" id="productID" placeholder="Digite o ID">
+                        </div>
+                        <div class="mb-3">
+                            <label for="productPrice" class="form-label">Preço:</label>
+                            <input type="text" class="form-control" id="productPrice" placeholder="Digite o preço">
+                        </div>
+                        <div class="mb-3">
+                            <label for="productDescription" class="form-label">Descrição:</label>
+                            <input type="text" class="form-control" id="productDescription"
+                                placeholder="Digite a descrição">
+                        </div>
+
+                        <!-- Botões lado a lado -->
+                        <div class="d-flex gap-2 mt-4">
+                            <button type="button" class="btn btn-primary w-50">Editar Estoque</button>
+                            <button type="button" class="btn btn-danger w-50">Excluir Produto</button>
                         </div>
                     </div>
 
-                    <div class="col pb-4 input-group">
-                        <div class="m-auto d-flex">
-                            <span class="input-group-text"><img src="../assets/icones/money.svg" alt=""></span>
-                            <input type="number" id="precoProduto" placeholder="Digite o valor do produto" style="width: 450px; border-color: #00000023; border-radius: 5px;" class="p-2"/>
-                        </div>
-                    </div>
-
-                    <div class="col pb-3 input-group">
-                        <div class="m-auto d-flex">
-                            <span class="input-group-text"><img src="../assets/icones/journal-text.svg" alt=""></span>
-                            <textarea class="form-control" aria-label="With textarea" id="descricaoProduto" placeholder="Digite a descrição do produto" rows="3" style="width: 450px;" ></textarea>
-                        </div>
-                    </div>
-
-                    <div class="col d-flex justify-content-center">
-                        <button id="submitBtn" class="btn btn-primary btn-md" type="submit">Cadastrar</button>
-                    </div>
                 </div>
             </div>
-
         </div>
     </main>
 
@@ -169,53 +281,7 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
-    <script>
-        // Referências aos elementos HTML
-        const mostrarCardBtn = document.getElementById('mostrarCardBtn');
-        const card = document.getElementById('cardi');
-        const submitBtn = document.getElementById('submitBtn');
-        const nomeProdutoEntrada = document.getElementById('nomeProduto');
-        const precoProdutoEntrada = document.getElementById('precoProduto');
-        const descricaoProdutoEntrada = document.getElementById('descricaoProduto');
-        const fecharCardBtn = document.getElementById('fecharCardBtn'); // Seleção do botão de fechar
-        const fecharCardi = document.getElementById('fecharCardi');
-        
-        // Função para mostrar o card
-        mostrarCardBtn.addEventListener('click', function () {
-            card.style.display = 'block'; // Exibe o card
-            fecharCardi.style.display = 'block';
-        });
-        
-        // Função para lidar com o envio de dados do input
-        submitBtn.addEventListener('click', function () {
-            let nomeProduto = nomeProdutoEntrada.value;
-            let precoProduto = precoProdutoEntrada.value;
-            let descricaoProduto = descricaoProdutoEntrada.value;
-        
-            if (descricaoProduto && nomeProduto && precoProduto) {
-                alert(`Você adicionou o produto ${nomeProduto} com preço de R$${precoProduto} com a descrição de ${descricaoProduto}.`);
-                
-                // Limpa os campos de entrada após o envio
-                nomeProdutoEntrada.value = '';
-                precoProdutoEntrada.value = '';
-                descricaoProdutoEntrada.value = '';
-                card.style.display = 'block'; 
-            } else {
-                alert('Por favor, digite algo!');
-                
-                // Limpa os campos de entrada caso falte algo
-                nomeProdutoEntrada.value = '';
-                precoProdutoEntrada.value = '';
-                descricaoProdutoEntrada.value = '';
-            }
-        });
-        
-        // Função para fechar o card
-        fecharCardBtn.addEventListener('click', function () {
-            fecharCardi.style.display = 'none'; // Esconde o card
-            alert('Clicou');
-        });
-    </script>
+    <script src="../javascript/botoes-cards.js"></script>
 </body>
 
 </html>
