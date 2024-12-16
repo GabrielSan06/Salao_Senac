@@ -3,7 +3,17 @@ import { ProdutoEstoque } from "../models/produtoEstoque";
 import { Produto } from "../models/produto";
 
 class ProdutoEstoqueRepository {
+    produtoRepository = AppDataSource.getRepository(Produto);
     produtoEstoqueRepository = AppDataSource.getRepository(ProdutoEstoque);
+
+    async saveProduct(produto: Produto): Promise<Produto> {
+        try {
+            let novoProduto = await AppDataSource.getRepository(Produto).save(produto);
+            return novoProduto;
+        } catch (error) {
+            throw new Error("Falha crira novo produto!: " + error);
+        }
+    }
 
     async save(produtoEstoque: ProdutoEstoque): Promise<ProdutoEstoque> {
         try {
