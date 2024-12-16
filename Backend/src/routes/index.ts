@@ -13,6 +13,6 @@ router.patch('/produtoEstoque/:id', produtoEstoqueController.update);
 router.delete('/produtoEstoque/:id', produtoEstoqueController.delete);
 
 
-router.get('/produto', produtoController.create);
+router.post('/produto', produtoController.create);
 
 export default router;
