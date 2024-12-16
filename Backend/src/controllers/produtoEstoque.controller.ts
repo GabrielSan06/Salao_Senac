@@ -9,7 +9,7 @@ export class ProdutoEstoqueController {
             const novoProduto = new ProdutoEstoque(idProduto, quantidade);
 
             produtoRepository.save(novoProduto)
-            res.status(201).json({ message: 'Produto criado com sucesso!' });
+            res.status(201).json({ message: 'Estoque do produto criado com sucesso!' });
         } catch(error) {
             console.log("Algo deu errado: ", error)
         }
@@ -48,7 +48,7 @@ export class ProdutoEstoqueController {
                 res.status(200).json({ message: 'Produto encontrado' });
             }
         } catch (error) {
-            console.log('Falha ao atualizar o produto: ', error)
+            console.log('Falha ao atualizar o estoque produto: ', error)
         }
     }
 
