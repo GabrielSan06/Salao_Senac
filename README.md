@@ -117,7 +117,7 @@ O projeto foi desenvolvido em equipe, com as seguintes responsabilidades:
 ## 📦 Instalação do Projeto
 1. Clone o repositório:
    ```bash
-   git clone <URL_DO_REPOSITORIO>
+   git clone https://github.com/GabrielSan06/Salao_Senac.git
    ```
 2. Acesse a pasta do back-end e instale as dependências:
    ```bash
