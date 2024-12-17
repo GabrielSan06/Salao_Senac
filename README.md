@@ -40,12 +40,16 @@ projeto-salao-senac/
 |
 |-- backend/                  # Código referente ao back-end
 |   |-- src/
-|       |-- controllers/      # Controladores das rotas (CRUD de estoque)
-|       |-- entities/         # Definições das entidades (Ex: Produto)
-|       |-- repositories/     # Integração com o banco via TypeORM
-|       |-- routes/           # Definição de rotas da API
-|       |-- services/         # Regras de negócio
-|       |-- index.ts          # Arquivo principal do servidor
+|       |-- build/            # Arquivos transpilados gerados (saída do TypeScript)
+|       |-- src/              # Código-fonte do projeto
+|           |-- controllers/  # Controladores das rotas (ex: CRUD de estoque)
+|           |-- db/
+|           |-- routes/       # Definição das rotas da API
+|           |-- repositories/
+|           |-- models/
+|       |-- package-lock.json # Gerenciamento das dependências (gerado pelo npm)
+|       |-- package.json      # Configurações do projeto e dependências
+|       |-- tsconfig.json     # Configurações do compilador TypeScript
 |
 |-- database/                 # Configurações do MySQL e migrações
 |
