@@ -86,20 +86,29 @@ O projeto apresenta as seguintes funcionalidades principais:
 ## 👥 Autores
 O projeto foi desenvolvido em equipe, com as seguintes responsabilidades:
 
-- **Gabriel Meiki**:
+- **João Gabriel**:
   - Liderança do projeto.
   - Desenvolvimento do back-end (Node.js, TypeScript, TypeORM).
   - Integração com o banco de dados MySQL.
 
-- **Membro 2**:
+- **Gabriel Meiki**:
   - Desenvolvimento do front-end (HTML, CSS, JavaScript).
   - Implementação da interface com Bootstrap.
   - Criação das páginas HTML.
 
-- **Membro 3**:
+- **Geovane Correia**:
   - Configuração do ambiente e gestão do repositório.
   - Testes e revisões do código.
   - Documentação do projeto.
+ 
+- **Vivian Brito**:
+  - Configuração do banco de dados com MySQL.
+
+- **Gustavo José**:
+  - Suporte ao banco de dados.
+
+- **Linda Caroly**:
+  - Suporte a documentação.
 
 ## 🔧 Observações
 - A página de agendamento ainda não foi implementada.
